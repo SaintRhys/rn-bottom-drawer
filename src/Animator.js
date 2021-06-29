@@ -69,9 +69,9 @@ export default class Animator extends Component{
 
   _transitionTo(position, callback) {
     Animated.spring(this.position, {
-      toValue: position
+      toValue: position,
+      useNativeDriver: false
     }).start(() => this.props.onExpanded());
-    useNativeDriver: false
     this.props.setCurrentPosition(position);
     callback();
   }
