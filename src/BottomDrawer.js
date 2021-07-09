@@ -57,7 +57,12 @@ export default class BottomDrawer extends Component{
     /**
      * A callback function triggered when the drawer swiped into down position
      */
-    onCollapsed: PropTypes.func
+    onCollapsed: PropTypes.func,
+    
+    /**
+     * A callback function triggered when the drawer toggles position
+     */
+    onCompletedToggle: PropTypes.func
   }
 
   static defaultProps = {
@@ -67,7 +72,8 @@ export default class BottomDrawer extends Component{
     roundedEdges: true,
     shadow: true,
     onExpanded: () => {},
-    onCollapsed: () => {}
+    onCollapsed: () => {},
+    onCompletedToggle: () => {}
   }
 
   constructor(props){
@@ -113,7 +119,8 @@ export default class BottomDrawer extends Component{
   }
 
   setCurrentPosition(position) {
-    this.setState({ currentPosition: position })
+    this.setState({ currentPosition: position });
+    this.props.onCompletedToggle();
   }
 
   _calculateUpPosition(screenHeight, containerHeight, offset) {
